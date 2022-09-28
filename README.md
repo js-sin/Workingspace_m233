@@ -1,22 +1,17 @@
-# Übungsprojekt: Punch Clock
-
-Punch Clock ist ein Zeiterfassungssystem, welches mit Quarkus entwickelt wird.
+# Workingspace_m223
+Das Workingspace ist ein Arbeitsplatz Buchungssystem, welches mit Quarkus entwickelt wurde.
 
 ## Erste Schritte
 
-1. Erstelle eine Kopie (fork) von diesem Projekt.
-1. Stelle sicher, dass Docker installiert ist und läuft.
-1. Stelle sicher, dass Visual Studio Code und die Erweiterung Remote Container installiert ist.
-1. Klone (clone) das Projekt lokal, um damit arbeiten zu können.
+1. Gehen Sie auf https://github.com/js-sin/Workingspace_m233/ und clonen Sie das gesamte Projekt.
+2. Stellen Sie sicher, dass Docker installiert ist und läuft.
+3. Stellen Sie sicher, dass Visual Studio Code und die Erweiterung Remote Container installiert ist.
 1. Öffne das Projekt mit Visual Studio Code.
+## Projekt starten
+
 1. Öffne das Projekt im Entwicklungscontainer.
 1. Starte das Projekt mit dem Kommando `Quarkus: Debug current Quarkus Project`
 1. Probiere die Client-Applikation unter http://localhost:8080 aus.
-1. Schaue die API auf http://localhost:8080/q/swagger-ui/ an.
-
-## Datenbank
-
-Die Daten werden in einer PostgreSQL-Datenbank gespeichert. In der Entwicklungsumgebung wird diese in der [docker-compose-yml](./.devcontainer/docker-compose.yml) konfiguriert.
 
 ### Datenbankadministration
 
