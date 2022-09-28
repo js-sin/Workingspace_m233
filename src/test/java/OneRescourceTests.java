@@ -7,8 +7,8 @@ import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
 
-public class OneRescourceTest{
-    //@
+public class OneRescourceTests{
+    //@..
      @Test
     public void userEndpoint401() {
         given()
@@ -31,13 +31,11 @@ public class OneRescourceTest{
              .statusCode(200)
             .body(is("[]"));
     }
-   
     @Test
-    public void rolesEndpoint401() {
+    public void rolesEndpoint401(){
         given()
           .when().get("/roles")
           .then()
             .statusCode(401);
     }
-   
 }
