@@ -19,7 +19,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import ch.zli.m223.model.User;
 import ch.zli.m223.service.UserService;
 
-
+/* 
 @Path("/user")
 @Tag(name = "user", description = "Handling of User")
 public class UserController {
@@ -176,6 +176,8 @@ public class User{
 		this.password = password;
 	}
 
-*/
 
-}
+
+
+}$
+*/
