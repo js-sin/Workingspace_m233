@@ -24,10 +24,17 @@ public class AuthorizationController{
     public String login(LoginData LoginData){
         User user = authorizationService.getUserByUsername(LoginData.getUsername());
         if (user.getPassword().equals(LoginData.getPassword())){
-
+            String token =  String token =
+                                            Jwt.issuer("https://example.com/issuer") 
+                                                .upn("jdoe@quarkus.io") 
+                                                .groups(user.getRoles().getRoleName()) 
+                                                .claim(user.getFirstName(), user.getLastName()) 
+                                            .sign();
+            System.out.println(token);
+            return token;
         }
         else{
-            
+            return "Login failed";
         }
     }
 }

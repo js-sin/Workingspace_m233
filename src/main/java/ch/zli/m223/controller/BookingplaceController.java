@@ -14,7 +14,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.Response;
-
 import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
@@ -51,17 +50,19 @@ public class BookingPlaceController {
        return bookingplaceService.createBookingplace(bookingplace);
     }
     //DA WEITER ARBEITEN
-     @DELETE
+    @DELETE
     @RolesAllowed("Admin")
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     public void delete(Long id) {
     bookingplaceService.deleteBookingplace(id);
     }
 
-     @PUT
-     @RolesAllowed("Admin")
-     @Path("/{id}")
-      public void update(Long id, Bookinplace bookingplace) {
+    @PUT
+    @RolesAllowed("Admin")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public void update(Long id, Bookinplace bookingplace) {
         Bookingplace.setId(id);
         bookingplaceService.update(bookingplace);
      }

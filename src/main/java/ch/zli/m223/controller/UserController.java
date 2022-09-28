@@ -48,7 +48,10 @@ public class UserController {
     }
 
     @DELETE
-    @Path("/{id}")
+    @RolesAllowed("Admin")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("/{delete/id}")
+    @RequestScoped
     userService.deleteUser(id);
 
     @PUT
@@ -57,7 +60,4 @@ public class UserController {
         user.setId(id);
         userService.update(user);
      }
-
-
-
 }

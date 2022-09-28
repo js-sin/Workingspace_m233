@@ -9,9 +9,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.Set;
+import javax.validation.constraints.Max;
 import javax.annotation.processing.Generated;
-import javax.print.attribute.standard.DateTimeAtCreation;
 
 import java.time.LocalDate;
 import javax.persistence.Id;
@@ -28,28 +29,32 @@ public class User{
     @Column(nullable = false)
     private char gender;
 
-     @Column(nullable = false)
+    @Column(nullable = false)
+	@Max(value = 120)
     private String firstname;
 
-     @Column(nullable = false)
+    @Column(nullable = false)
+	@Max(value = 120)
     private String lastname;
 
-     @Column(nullable = false)
+    @Column(nullable = false)
+	@Max(value = 2)
     private int age;
 
 	@Email
-     @Column(nullable = false)
+    @Column(nullable = false)
     private String email;
 
-     @Column(nullable = false)
+    @Column(nullable = false)
     private String password;
 
-     @Column(nullable = false)
+    @Column(nullable = false)
     private LocalDate register_date;
 
     @OneToMany(mappedBy = "user")
     @JsonIgnore
     //print Set<Booking> booking;
+
 
     //Getter and Setter
 	public int getId() {
