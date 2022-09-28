@@ -1,56 +1,27 @@
 package ch.zli.m223.model;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.Set;
+import javax.annotation.processing.Generated;
+import javax.print.attribute.standard.DateTimeAtCreation;
 
-@Path("/booking")
-@Tag(name = "booking", description = "Bookings")
+import javax.persistence.Id;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class BookingController {
-
-    @Inject
-    BookingService bookingService;
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "All Bookings.", description = "Returns a list of all bookings.")
-    public List<Booking> indexById() {
-        return bookingService.findAll();
-    }
-
-	@GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Index all Users.", description = "Returns a list of all users.")
-    @Path("/{id}")
-    public List<Booking> index(Long id) {
-        return List.of(bookingService.getBookingById(id));
-    }
-
-	@DELETE
-    @Path("/{id}")
-    public void delete(long id) {
-    bookingService.deleteBooking(id);
-    }
-
-     @PUT
-     @Path("/{id}")
-      public void update(Long id, Booking booking) {
-        booking.setId(id);
-        bookingService.update(booking);
-     }
-
-
-
-/* @Enitity 
+@Entity
 public class Booking{
     @Id
-    @GenerateValue (strategy = GenerationType.IDENTIFY)
-    @Schema(readOnly = true)
-    private int id;
-
-    @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Schema(readOnly = true)
     private int id;
 
     @Column(nullable = false)
@@ -59,72 +30,28 @@ public class Booking{
     @Column(nullable = false)
     private char status;
 
-    @ManyToOne
-    @JoinColumn(name = "bookingplace")
-    private Bookingplace bookingplace;
 
     @ManyToMany
     @JoinColumn(name = "user")
     private User user;
 
-     @ManyToOne
-    @JoinColumn(name = "bookingdate")
-    private Bookingdate bookingdate;
+     @ManyToMany
+    @JoinColumn(name = "user")
+    private Bookingplace bookingplace;
 
-
-	public int getId() {
-		return this.id;
-	}
-
+    public int getId() {
+		return this.id;}
 	public void setId(int id) {
-		this.id = id;
-	}
-
-	public = getFalse)() {
-		return this.false);
-	}
-
-	public void setFalse)(= false)) {
-		this.false) = false);
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public = getFalse)() {
-		return this.false);
-	}
-
-	public void setFalse)(= false)) {
-		this.false) = false);
-	}
+		this.id = id;}
 
 	public String getTitle() {
-		return this.title;
-	}
-
+		return this.title;}
 	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public = getFalse)() {
-		return this.false);
-	}
-
-	public void setFalse)(= false)) {
-		this.false) = false);
-	}
+		this.title = title;}
 
 	public char getStatus() {
-		return this.status;
-	}
-
+		return this.status;}
 	public void setStatus(char status) {
 		this.status = status;
-	} */
+	}
 }

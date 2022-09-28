@@ -1,93 +1,57 @@
 package ch.zli.m223.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.Set;
+import javax.annotation.processing.Generated;
+import javax.print.attribute.standard.DateTimeAtCreation;
 
-import java.util.List;
+import java.time.LocalDate;
+import javax.persistence.Id;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-
-import org.eclipse.microprofile.openapi.annotations.Operation;
-import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-
-import ch.zli.m223.model.User;
-import ch.zli.m223.service.UserService;
-
-/* 
-@Path("/user")
-@Tag(name = "user", description = "Handling of User")
-public class UserController {
-
-    @Inject
-    UserService userService;
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Index all Users.", description = "Returns a list of all users.")
-    public List<User> indexById() {
-        return userService.findAll();
-    }
-
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Index all Users.", description = "Returns a list of all users.")
-    @Path("/{id}")
-    public List<User> index(Long id) {
-        return List.of(userService.getUserById(id));
-    }
-
-    @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Creates a new user.", description = "Creates a new user and returns the newly added user.")
-    public User create(User user) {
-       return userService.createUser(user);
-    }
-
-    @DELETE
-    @Path("/{id}")
-    public void delete(long id) {
-    userService.deleteUser(id);
-    }
-
-     @PUT
-     @Path("/{id}")
-      public void update(Long id, User user) {
-        user.setId(id);
-        userService.update(user);
-     }
-
-
-/* 
-@Enitity 
+@Entity
 public class User{
     @Id
-    @GenerateValue(strategy = GenerationType.IDENTIFY)
-    @Schema(readOnly = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema()
     private int id;
 
     @Column(nullable = false)
+    private char gender;
+
+     @Column(nullable = false)
     private String firstname;
 
-    @Column(nullable = false)
+     @Column(nullable = false)
     private String lastname;
 
-    @Column(nullable = false)
-    private char age; 
+     @Column(nullable = false)
+    private int age;
 
-    @Column(nullable = false)
-    private String email; 
+	@Email
+     @Column(nullable = false)
+    private String email;
 
-    @Column(nullable = false)
+     @Column(nullable = false)
     private String password;
 
+     @Column(nullable = false)
+    private LocalDate register_date;
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    //print Set<Booking> booking;
+
+    //Getter and Setter
 	public int getId() {
 		return this.id;
 	}
@@ -96,13 +60,14 @@ public class User{
 		this.id = id;
 	}
 
-	public = getFalse)() {
-		return this.false);
+	public char getGender() {
+		return this.gender;
 	}
 
-	public void setFalse)(= false)) {
-		this.false) = false);
+	public void setGender(char gender) {
+		this.gender = gender;
 	}
+
 
 	public String getFirstname() {
 		return this.firstname;
@@ -110,14 +75,6 @@ public class User{
 
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
-	}
-
-	public = getFalse)() {
-		return this.false);
-	}
-
-	public void setFalse)(= false)) {
-		this.false) = false);
 	}
 
 	public String getLastname() {
@@ -128,28 +85,12 @@ public class User{
 		this.lastname = lastname;
 	}
 
-	public = getFalse)() {
-		return this.false);
-	}
-
-	public void setFalse)(= false)) {
-		this.false) = false);
-	}
-
-	public char getAge() {
+	public int getAge() {
 		return this.age;
 	}
 
-	public void setAge(char age) {
+	public void setAge(int age) {
 		this.age = age;
-	}
-
-	public = getFalse)() {
-		return this.false);
-	}
-
-	public void setFalse)(= false)) {
-		this.false) = false);
 	}
 
 	public String getEmail() {
@@ -159,15 +100,6 @@ public class User{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public = getFalse)() {
-		return this.false);
-	}
-
-	public void setFalse)(= false)) {
-		this.false) = false);
-	}
-
 	public String getPassword() {
 		return this.password;
 	}
@@ -176,8 +108,13 @@ public class User{
 		this.password = password;
 	}
 
+	public LocalDate getRegister_date() {
+		return register_date;
+	}
+
+	public void setRegister_date(LocalDate register_date) {
+		this.register_date = register_date;
+	}
 
 
-
-}$
-*/
+}

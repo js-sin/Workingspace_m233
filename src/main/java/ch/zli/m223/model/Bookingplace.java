@@ -1,82 +1,59 @@
 package ch.zli.m223.model;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.Set;
+import javax.annotation.processing.Generated;
+import javax.print.attribute.standard.DateTimeAtCreation;
 
-import javax.inject.Inject;
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import ch.zli.m223.model.Bookingplace;
+import java.time.LocalDate;
+import javax.persistence.Id;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-
-@Path("/place")
-@Tag(name = "place", description = "Place")
-
-public class PlaceController {
-
-    @Inject
-    PlaceService placeService;
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Index all Places.", description = "Returns a list of all Places.")
-    public List<Place> indexById() {
-        return placeService.findAll();
-    }
-
-	@POST
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Operation(summary = "Creates a new user.", description = "Creates a new user and returns the newly added user.")
-    public Place create(Place place) {
-       return placeService.createPlace(place);
-    }
-
-    @DELETE
-    @Path("/{id}")
-    public void delete(long id) {
-    placeService.deletePlace(id);
-    }
-
-     @PUT
-     @Path("/{id}")
-      public void update(Long id, Place place) {
-        place.setId(id);
-        placeService.update(place);
-     }
-
-
-/* @Enitity 
+@Entity
 public class Bookingplace{
-     @Id
-    @GenerateValue(strategy = GenerationType.IDENTIFY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(readOnly = true)
     private int id;
 
-     @Column(nullable = false)
+    @Column(nullable = false)
     private String place_number;
 
-	public int getId() {
-		return this.id;
-	}
+    @Column(nullable = false)
+    private String room_name;
 
+
+@OneToMany(mappedBy = "bookingplace")
+@JsonIgnore
+private Set<Booking> booking;
+
+
+	public int getId() {
+		return this.id;}
 	public void setId(int id) {
-		this.id = id;
-	}
+		this.id = id;}
 
 	public String getPlace_number() {
-		return this.place_number;
-	}
-
+		return this.place_number;}
 	public void setPlace_number(String place_number) {
-		this.place_number = place_number;
-	}
+		this.place_number = place_number;}
 
-    @OneToMany(mappedBy = "bokkingplace")
-    @JsonIgnore
-    private Set<Booking> booking; */
-   
+	public String getRoom_name() {
+		return this.room_name;	}
+	public void setRoom_name(String room_name) {
+		this.room_name = room_name;}
+
+
+
+
 }
+
