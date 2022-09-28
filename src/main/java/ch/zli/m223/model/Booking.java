@@ -1,6 +1,49 @@
 package ch.zli.m223.model;
 
-@Enitity 
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+
+@Path("/booking")
+@Tag(name = "booking", description = "Bookings")
+
+public class BookingController {
+
+    @Inject
+    BookingService bookingService;
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "All Bookings.", description = "Returns a list of all bookings.")
+    public List<Booking> indexById() {
+        return bookingService.findAll();
+    }
+
+	@GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Operation(summary = "Index all Users.", description = "Returns a list of all users.")
+    @Path("/{id}")
+    public List<Booking> index(Long id) {
+        return List.of(bookingService.getBookingById(id));
+    }
+
+	@DELETE
+    @Path("/{id}")
+    public void delete(long id) {
+    bookingService.deleteBooking(id);
+    }
+
+     @PUT
+     @Path("/{id}")
+      public void update(Long id, Booking booking) {
+        booking.setId(id);
+        bookingService.update(booking);
+     }
+
+
+
+/* @Enitity 
 public class Booking{
     @Id
     @GenerateValue (strategy = GenerationType.IDENTIFY)
@@ -83,5 +126,5 @@ public class Booking{
 
 	public void setStatus(char status) {
 		this.status = status;
-	}
+	} */
 }
